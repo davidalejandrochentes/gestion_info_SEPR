@@ -1,0 +1,32 @@
+{% extends "layout/base.html" %}
+
+{% block 'title'%} Sindicato {% endblock %}
+
+{% block search %}
+    <form class="d-flex" role="search" action="" method='GET'>
+        <input class="form-control me-2" type="search" name="search" placeholder="Nombre del Sindicato" aria-label="Search">
+        <button class="btn btn-outline-dark" type="submit">Buscar</button>
+    </form>
+{% endblock search %}
+
+
+{% block breadcrumb %}
+    <div class="container p-1 d-flex">
+        <li class="breadcrumb-item"><a class="text-secondary"href="{% url "sindicato" %}">Sindicato</a></li>
+    <div>
+{% endblock  %}
+
+{% block 'content' %}
+    <h5 class="text-center mt-4">Cantidad de sindicatos "{{ cantidad }}"</h5>
+    <div class="container mt-2 row d-flex justify-content-center align-item-center">
+        {% for sindicato in sindicatos %}    
+            <div class="card text-center m-3 bg-body-tertiary rounded shadow col-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ sindicato.nombre }}</h5>
+                    <p class="card-text">{{ sindicato.dirección }}</p>
+                    <a href="{% url "datos_sindicato" id=sindicato.id %}" class="btn btn-login">Go somewhere</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>    
+{% endblock %}

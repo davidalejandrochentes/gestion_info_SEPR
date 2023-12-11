@@ -1,0 +1,17 @@
+{% extends "layout/base.html" %}
+
+{% block 'title'%} Home {% endblock %}
+
+
+{% block breadcrumb %}
+    <div class="container p-1 d-flex">
+        <li class="breadcrumb-item"><a class="text-secondary"href="{% url "index" %}">Inicio</a></li>
+    <div>
+{% endblock  %}
+
+
+{% block 'content' %}
+    <div class="container text-center pt-5">
+        {% lorem 3 p random %}
+    </div>
+{% endblock %}

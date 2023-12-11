@@ -1,0 +1,35 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.color-nav{
+    background-color: rgb(218, 123, 54);
+}
+
+.prueba{
+    background-image: url("../images/bg-masthead.jpg");
+    min-height: 788px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    background-color: #ffffff;
+    background-blend-mode: multiply;
+}
+
+.btn-login{
+    background-color: rgb(218, 123, 54);
+    color: white;
+}
+
+.text-login{
+    color: rgb(218, 123, 54);
+}
+
+.btn-login:hover{
+    background-color: rgb(234, 104, 12);
+}
