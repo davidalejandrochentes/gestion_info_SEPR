@@ -47,3 +47,8 @@ def datos_sindicato(request, id):
         'trabajadores': trabajadores,
     }
     return render(request, 'control_sindical/datos_sindicatos.html', context)
+
+
+@login_required
+def detalles_trabajador(request):
+    return render(request, 'control_sindical/detalles_trabajador.html', {})

@@ -38,7 +38,7 @@
         <tbody>
             {% for trabajador in trabajadores %}
                 <tr>
-                    <td>{{ trabajador.nombre }}</td>
+                    <td><a class="text-dark" href="{% url "detalles_trabajador" %}">{{ trabajador.nombre }}</a></td>
                     <td>{{ trabajador.apellido }}</td>
                     <td>{{ trabajador.ci }}</td>
                     <td>{{ trabajador.salario_mensual }}</td>
