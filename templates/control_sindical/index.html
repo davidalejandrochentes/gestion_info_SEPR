@@ -2,6 +2,12 @@
 
 {% block 'title'%} Home {% endblock %}
 
+{% block search %}
+    <form class="d-flex" role="search" action="" method='GET'>
+        <input class="form-control me-2" type="search" name="search" placeholder="Nombre del Sindicato" aria-label="Search">
+        <button class="btn btn-outline-dark" type="submit">Buscar</button>
+    </form>
+{% endblock search %}
 
 {% block breadcrumb %}
     
