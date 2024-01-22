@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'control_sindical',
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "SEPR",
+    "site_header": "Library",
+    "welcome_sign": "SEPR",
+    "site_brand": "SEPR",
+    
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
