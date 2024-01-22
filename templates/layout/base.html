@@ -30,8 +30,9 @@
                 <div>
                 <a class="navbar-brand" href="{% url "index" %}">Inicio</a>
                 <a class="navbar-brand" href="{% url "sindicato" %}">Sindicato</a>
-                <a class="navbar-brand">Trabajador</a>
-                <a class="navbar-brand">Asambleas</a>
+                <a class="navbar-brand" href="{% url "trabajadores" %}">Trabajador</a>
+                <a class="navbar-brand" href="{% url "asambleas" %}">Asambleas</a>
+                <a class="navbar-brand" href="{% url "map" %}">Map</a>
                 {% if user.is_authenticated %}
                         <a class="navbar-brand" href="{% url "logout" %}">Salir</a>
                 {% endif %}

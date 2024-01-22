@@ -41,7 +41,7 @@ def sindicato(request):
 @login_required
 def datos_sindicato(request, id):
     sindicato = get_object_or_404(Sindicato, id=id)
-    trabajadores = Trabajador.objects.filter(sindicato=sindicato)
+    trabajadores = Trabajador.objects.filter(nombre__icontains=request.GET.get('search', ''), sindicato=sindicato)
     context = {
         'sindicato': sindicato,
         'trabajadores': trabajadores,
@@ -50,5 +50,34 @@ def datos_sindicato(request, id):
 
 
 @login_required
-def detalles_trabajador(request):
-    return render(request, 'control_sindical/detalles_trabajador.html', {})
+def detalles_trabajador(request, id):
+    trabajador = get_object_or_404(Trabajador, id=id)
+    context = {
+        'trabajador': trabajador
+    }
+    return render(request, 'control_sindical/detalles_trabajador.html', context)
+
+@login_required
+def trabajadores(request):
+    trabajadores = Trabajador.objects.filter(nombre__icontains=request.GET.get('search', ''))
+    context = {
+        'trabajadores': trabajadores,
+    }
+    return render(request, 'control_sindical/trabajadores.html', context)
+
+@login_required
+def mapt(request):
+    trabajadores = Trabajador.objects.filter(nombre__icontains=request.GET.get('search', ''))
+    context = {
+        'trabajadores': trabajadores,
+    }
+    return render(request, 'control_sindical/map.html', context)
+
+@login_required
+def asambleas(request):
+    nombre_sindicato = request.GET.get('search', '')
+    asambleas = AsambleaAfiliados.objects.filter(sindicato__nombre__icontains=nombre_sindicato).order_by('-fecha')
+    context = {
+        'asambleas': asambleas,
+    }
+    return render(request, 'control_sindical/asambleas.html', context)

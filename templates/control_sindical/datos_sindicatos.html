@@ -13,7 +13,7 @@
 {% block breadcrumb %}
     <div class="container p-1 d-flex">
         <li class="breadcrumb-item"><a class="text-secondary"href="{% url "sindicato" %}">Sindicato</a></li>
-        <li class="breadcrumb-item"><a class="text-secondary"href="">Datos del Sindicato</a></li>
+        <li class="breadcrumb-item"><a class="text-secondary"href="{% url "datos_sindicato" id=sindicato.id %}">Datos del Sindicato</a></li>
     <div>
 {% endblock  %}
     
@@ -38,13 +38,15 @@
         <tbody>
             {% for trabajador in trabajadores %}
                 <tr>
-                    <td><a class="text-dark" href="{% url "detalles_trabajador" %}">{{ trabajador.nombre }}</a></td>
+                    <td><a class="text-dark" href="{% url "detalles_trabajador" id=trabajador.id %}">{{ trabajador.nombre }}</a></td>
                     <td>{{ trabajador.apellido }}</td>
                     <td>{{ trabajador.ci }}</td>
                     <td>{{ trabajador.salario_mensual }}</td>
-                    <td scope="col">Cuaota</td>
-                    <td scope="col">Fecha de alta</td>
-                    <td scope="col">Fecha de baja</td>
+                    <td>{{ trabajador.cuota }}</td>
+                    <td>{{ trabajador.fecha_alta }}</td>
+                    <td>{% if trabajador.fecha_baja == None %}Activo 
+                        {% else %}{{ trabajador.fecha_baja }}
+                        {% endif %}</td>
                 </tr>
             {% endfor %}
         </tbody>

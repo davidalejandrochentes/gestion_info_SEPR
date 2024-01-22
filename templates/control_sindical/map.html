@@ -1,0 +1,47 @@
+{% extends "layout/base.html" %}
+
+{% block 'title'%} MAP {% endblock %}
+
+{% block search %}
+    <form class="d-flex" role="search" action="" method='GET'>
+        <input class="form-control me-2" type="search" name="search" placeholder="Nombre del Sindicato" aria-label="Search">
+        <button class="btn btn-outline-dark" type="submit">Buscar</button>
+    </form>
+{% endblock search %}
+
+
+{% block breadcrumb %}
+    <div class="container p-1 d-flex">
+        <li class="breadcrumb-item"><a class="text-secondary"href="{% url "map" %}">MAP</a></li>
+    <div>
+{% endblock  %}
+
+{% block 'content' %}
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Sindicato</th>
+            <th scope="col">Fecha de pago y Monto</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for trabajador in trabajadores %}
+            <tr>
+                <td><a class="text-dark" href="{% url "detalles_trabajador" id=trabajador.id %}">{{ trabajador.nombre }}</a></td>
+                <td>{{ trabajador.apellido }}</td>
+                <td>{{ trabajador.sindicato }}</td>
+                <td>{% with map_data=trabajador.map_set.first %}
+                    {% if map_data %}
+                        <p>Fecha de pago: {{ map_data.fecha_pago }}, Monto: {{ map_data.monto }}</p>
+                    {% else %}
+                        <p>No hay datos de Map para este trabajador</p>
+                    {% endif %}
+                {% endwith %}</td>
+                <td></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

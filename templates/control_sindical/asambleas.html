@@ -1,0 +1,40 @@
+{% extends "layout/base.html" %}
+
+{% block 'title'%} Asambleas {% endblock %}
+
+{% block search %}
+    <form class="d-flex" role="search" action="" method='GET'>
+        <input class="form-control me-2" type="search" name="search" placeholder="Nombre del Sindicato" aria-label="Search">
+        <button class="btn btn-outline-dark" type="submit">Buscar</button>
+    </form>
+{% endblock search %}
+
+
+{% block breadcrumb %}
+    <div class="container p-1 d-flex">
+        <li class="breadcrumb-item"><a class="text-secondary"href="{% url "asambleas" %}">Asambleas</a></li>
+    <div>
+{% endblock  %}
+
+{% block 'content' %}
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th scope="col">sindicato</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Cantidad de trabajadores</th>
+            <th scope="col">cantidad de acuerdos</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for asamblea in asambleas %}
+            <tr>
+                <td>{{ asamblea.sindicato }}</td>
+                <td>{{ asamblea.fecha }}</td>
+                <td>{{ asamblea.cantidad_trabajadores }}</td>
+                <td>{{ asamblea.cantidad_acuerdos }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -6,12 +6,32 @@
 {% block breadcrumb %}
     <div class="container p-1 d-flex">
         <li class="breadcrumb-item"><a class="text-secondary"href="{% url "sindicato" %}">Sindicato</a></li>
-        <li class="breadcrumb-item"><a class="text-secondary"href="">Datos del Sindicato</a></li>
+        <li class="breadcrumb-item"><a class="text-secondary"href="{% url "datos_sindicato" id=trabajador.sindicato.id %}">Datos del Sindicato</a></li>
         <li class="breadcrumb-item"><a class="text-secondary"href="">Trabajador</a></li>
     <div>
 {% endblock  %}
 
 
 {% block 'content' %}
-    
+    <div class="d-flex justify-content-center">
+        <div class="mt-4 p-3 d-inline-block caja-trabajador shadow rounded">
+            <p><b>Nombre:</b> {{ trabajador.nombre }}</p>
+            <p><b>Apellido:</b> {{ trabajador.apellido }}</p>
+            <p><b>Ci:</b> {{ trabajador.ci }}</p>
+            <p><b>Salario mensual:</b> {{ trabajador.salario_mensual }}</p>
+            <p><b>Cuota:</b> {{ trabajador.cuota }}</p>
+            <p><b>Fecha alta:</b> {{ trabajador.fecha_alta }}</p>
+            <p><b>Fecha baja:</b> {% if trabajador.fecha_baja == None %}Activo 
+                                    {% else %}{{ trabajador.fecha_baja }}
+                                    {% endif %}</p>
+            <p><b>Sindicato:</b> {{ trabajador.sindicato }}</p>
+            <p>{% with map_data=trabajador.map_set.first %}
+                {% if map_data %}
+                    <p><b>Fecha de Map:</b> {{ map_data.fecha_pago }}, <b>Monto:</b> {{ map_data.monto }}</p>
+                {% else %}
+                    <p>No hay datos de Map para este trabajador</p>
+                {% endif %}
+            {% endwith %}</td></p>
+        </div>
+    </div>
 {% endblock %}

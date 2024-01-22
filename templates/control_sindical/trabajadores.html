@@ -1,0 +1,50 @@
+{% extends "layout/base.html" %}
+
+{% block 'title'%} Trabajadores {% endblock %}
+
+{% block search %}
+    <form class="d-flex" role="search" action="" method='GET'>
+        <input class="form-control me-2" type="search" name="search" placeholder="Nombre del Sindicato" aria-label="Search">
+        <button class="btn btn-outline-dark" type="submit">Buscar</button>
+    </form>
+{% endblock search %}
+
+
+{% block breadcrumb %}
+    <div class="container p-1 d-flex">
+        <li class="breadcrumb-item"><a class="text-secondary"href="{% url "trabajadores" %}">Trabajadores</a></li>
+    <div>
+{% endblock  %}
+
+{% block 'content' %}
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">CI</th>
+            <th scope="col">Sindicato</th>
+            <th scope="col">Salario Mensual</th>
+            <th scope="col">Cuaota</th>
+            <th scope="col">Fecha de alta</th>
+            <th scope="col">Fecha de baja</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for trabajador in trabajadores %}
+            <tr>
+                <td><a class="text-dark" href="{% url "detalles_trabajador" id=trabajador.id %}">{{ trabajador.nombre }}</a></td>
+                <td>{{ trabajador.apellido }}</td>
+                <td>{{ trabajador.ci }}</td>
+                <td>{{ trabajador.sindicato }}</td>
+                <td>{{ trabajador.salario_mensual }}</td>
+                <td>{{ trabajador.cuota }}</td>
+                <td>{{ trabajador.fecha_alta }}</td>
+                <td>{% if trabajador.fecha_baja == None %}Activo 
+                    {% else %}{{ trabajador.fecha_baja }}
+                    {% endif %}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
