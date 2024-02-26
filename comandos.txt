@@ -13,7 +13,7 @@ intalar rest framework : pip install djangorestframework
 comunicar back con from : pip install django-cors-headers
 test unit : pip install pytest-django
 
-pip uninstall nombre_del_paquete_o_librería
+pip uninstall nombre_del_paquete_o_librerï¿½a
 
 crear un entorno virtual : virtualenv venv    o tambien puedes usar    pip install virtualenv
 activar el entorno :  source venv/bin/activate    despues de estar activados es que puedes ver los paquetes intalados e intalar uno nuevo

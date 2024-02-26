@@ -24,7 +24,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ sindicato.nombre }}</h5>
                     <p class="card-text">{{ sindicato.dirección }}</p>
-                    <a href="{% url "datos_sindicato" id=sindicato.id %}" class="btn btn-login">Go somewhere</a>
+                    <a href="{% url "datos_sindicato" id=sindicato.id %}" class="btn btn-login">Ver detalles</a>
                 </div>
             </div>
         {% endfor %}
