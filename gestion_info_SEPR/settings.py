@@ -46,6 +46,11 @@ JAZZMIN_SETTINGS = {
     "site_header": "Library",
     "welcome_sign": "SEPR",
     "site_brand": "SEPR",
+    "welcome_sign": "Bienvenido a SEPR",
+    "copyright": "SEPR",
+    "topmenu_links": [
+        {"name": "Inicio",  "url": "index"},
+    ],
     
 }
 
