@@ -3,10 +3,28 @@
 {% block 'title'%} MAP {% endblock %}
 
 {% block search %}
-    <form class="d-flex" role="search" action="" method='GET'>
-        <input class="form-control me-2" type="search" name="search" placeholder="Nombre del trabajador" aria-label="Search">
-        <button class="btn btn-outline-dark" type="submit">Buscar</button>
-    </form>
+<form class="d-flex" role="search" action="" method="GET">
+    <!-- Campo de búsqueda por nombre del trabajador -->
+    <input class="form-control me-2" type="search" name="search" placeholder="Trabajador" aria-label="Search" value="{{ request.GET.search }}">
+    
+    <!-- Filtro por mes -->
+    <select class="form-control me-2" name="mes">
+        <option value="">Mes</option>
+        {% for i in meses %}
+            <option value="{{ i }}" {% if request.GET.mes == i|stringformat:"d" %}selected{% endif %}>{{ i }}</option>
+        {% endfor %}
+    </select>
+
+    <!-- Filtro por año -->
+    <select class="form-control me-2" name="anio">
+        <option value="">Año</option>
+        {% for i in anios %}
+            <option value="{{ i }}" {% if request.GET.anio == i|stringformat:"d" %}selected{% endif %}>{{ i }}</option>
+        {% endfor %}
+    </select>
+
+    <button class="btn btn-outline-dark" type="submit">Buscar</button>
+</form>
 {% endblock search %}
 
 

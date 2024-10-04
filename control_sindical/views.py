@@ -65,13 +65,37 @@ def trabajadores(request):
     }
     return render(request, 'control_sindical/trabajadores.html', context)
 
-@login_required
+
+
+
 def mapt(request):
-    trabajadores = Trabajador.objects.filter(nombre__icontains=request.GET.get('search', ''))
+    # Obtén los valores de búsqueda de los parámetros GET (si existen)
+    search = request.GET.get('search', '')
+    mes = request.GET.get('mes', '')
+    anio = request.GET.get('anio', '')
+
+    # Filtra a los trabajadores en función de la búsqueda
+    trabajadores = Trabajador.objects.all()
+    
+    if search:
+        trabajadores = trabajadores.filter(nombre__icontains=search)
+
+    # Puedes filtrar por mes y año si están presentes
+    if mes:
+        trabajadores = trabajadores.filter(map__fecha_pago__month=mes)
+
+    if anio:
+        trabajadores = trabajadores.filter(map__fecha_pago__year=anio)
+
     context = {
         'trabajadores': trabajadores,
+        'meses': range(1, 13),  # Meses del 1 al 12
+        'anios': range(2020, 2031)  # Años del 2020 al 2030
     }
+
     return render(request, 'control_sindical/map.html', context)
+
+
 
 @login_required
 def asambleas(request):
