@@ -24,6 +24,7 @@
             <th scope="col">Apellidos</th>
             <th scope="col">Sindicato</th>
             <th scope="col">Fecha de pago y Monto</td>
+            <th scope="col">Pagado</td>
         </tr>
     </thead>
     <tbody>
@@ -32,14 +33,28 @@
                 <td><a class="text-dark" href="{% url "detalles_trabajador" id=trabajador.id %}">{{ trabajador.nombre }}</a></td>
                 <td>{{ trabajador.apellido }}</td>
                 <td>{{ trabajador.sindicato }}</td>
-                <td>{% with map_data=trabajador.map_set.first %}
-                    {% if map_data %}
-                        <p>Fecha de pago: {{ map_data.fecha_pago }}, Monto: {{ map_data.monto }}</p>
-                    {% else %}
-                        <p>No hay datos de Map para este trabajador</p>
-                    {% endif %}
-                {% endwith %}</td>
-                <td></td>
+                <td>
+                    {% with map_data=trabajador.map_set.first %}
+                        {% if map_data %}
+                            <p>Fecha de pago: {{ map_data.fecha_pago }}, Monto: {{ map_data.monto }}</p>
+                        {% else %}
+                            <p>No hay datos de Map para este trabajador</p>
+                        {% endif %}
+                    {% endwith %}
+                </td>
+                <td>
+                    {% with map_data=trabajador.map_set.first %}
+                        {% if map_data %}
+                            {% if map_data.pagado is True %}
+                                <p class="text-success">Pago efectuado</p>
+                            {% else %}
+                                <p class="text-danger">Pago pendiente</p>
+                            {% endif %}
+                        {% else %}
+                            <p>---</p>
+                        {% endif %}
+                    {% endwith %}
+                </td>
             </tr>
         {% endfor %}
     </tbody>
