@@ -24,6 +24,7 @@
             <th scope="col">Fecha</th>
             <th scope="col">Cantidad de trabajadores</th>
             <th scope="col">cantidad de acuerdos</td>
+            <th scope="col">Imagen del acta</td>
         </tr>
     </thead>
     <tbody>
@@ -33,6 +34,24 @@
                 <td>{{ asamblea.fecha }}</td>
                 <td>{{ asamblea.cantidad_trabajadores }}</td>
                 <td>{{ asamblea.cantidad_acuerdos }}</td>
+                <td>
+                    <button type="button" class="btn btn-secondary btn-sm btn-login" data-bs-toggle="modal" data-bs-target="#exampleModal{{ asamblea.id }}1">
+                        Imagen <i class="bi bi-image"></i>
+                    </button>
+                    <div class="modal fade" id="exampleModal{{ asamblea.id }}1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Imagen</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="{{ asamblea.imagen.url }}" class="img-fluid" alt="Imagen">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
             </tr>
         {% endfor %}
     </tbody>

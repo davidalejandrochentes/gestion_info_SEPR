@@ -11,6 +11,7 @@ class Sindicato(models.Model):
 
     def __str__(self):
         return self.nombre
+
     
 class Trabajador(models.Model):
     nombre = models.CharField(max_length=20, blank=False, null=False)
@@ -63,12 +64,12 @@ def eliminar_imagen_anterior_al_actualizar(sender, instance, **kwargs):
         return False
 
     try:
-        area_anterior = Area.objects.get(pk=instance.pk)  # Obtener el área anterior de la base de datos
-    except Area.DoesNotExist:
+        asamblea_anterior = AsambleaAfiliados.objects.get(pk=instance.pk)  # Obtener el área anterior de la base de datos
+    except AsambleaAfiliados.DoesNotExist:
         return False  # El área anterior no existe, no hay imagen anterior que eliminar
 
-    if area_anterior.imagen:  # Verificar si el área anterior tiene una imagen
+    if asamblea_anterior.imagen:  # Verificar si el área anterior tiene una imagen
         nueva_imagen = instance.imagen
-        if area_anterior.imagen != nueva_imagen:  # Verificar si se ha seleccionado una nueva imagen
-            if os.path.isfile(area_anterior.imagen.path):  # Verificar si el archivo de imagen existe en el sistema de archivos
-                os.remove(area_anterior.imagen.path)                
+        if asamblea_anterior.imagen != nueva_imagen:  # Verificar si se ha seleccionado una nueva imagen
+            if os.path.isfile(asamblea_anterior.imagen.path):  # Verificar si el archivo de imagen existe en el sistema de archivos
+                os.remove(asamblea_anterior.imagen.path)                
